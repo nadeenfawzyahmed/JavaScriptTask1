@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <form>
+        <input type="text" placeholder="text" name="name">
+        <button type="submit" class="btn btn-primary">Submit</button>
+            <div  class="btn btn-primary" id="button-delete">Delete</div>
+
+
+
+    </form>
+
+</body>
+<script>
+
+   
+
+    function containsSpecialChars(str) {
+        const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        return specialChars.test(str);
+    }
+    const form = document.querySelector("form")
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+
+        for (const [name, value] of data) {
+            console.log(name, ":", value)
+            if (value != "") {
+                if (!containsSpecialChars(value)) {
+                    var label = document.createElement("label");
+                    label.textContent=value;
+                    label.id="label-id";
+                    document.body.appendChild(label);
+
+                }
+
+            }
+        }
+
+    });
+    var del=document.getElementById("button-delete")
+    del.addEventListener('click', (e) => {
+        var label = document.getElementById('label-id');
+        console.log(label);
+        label.parentNode.removeChild(label);
+    })
+
+    
+
+
+
+</script>
+
+</html>
